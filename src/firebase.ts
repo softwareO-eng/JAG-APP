@@ -1,6 +1,6 @@
 import { initializeApp, FirebaseApp } from 'firebase/app';
 import { getAuth, Auth, GoogleAuthProvider, signInWithPopup, signInAnonymously, onAuthStateChanged, User, signOut } from 'firebase/auth';
-import { initializeFirestore, Firestore, doc, collection, getDoc, getDocs, setDoc, updateDoc, deleteDoc, query, where, onSnapshot, getDocFromServer } from 'firebase/firestore';
+import { getFirestore, initializeFirestore, Firestore, doc, collection, getDoc, getDocs, setDoc, updateDoc, deleteDoc, query, where, onSnapshot, getDocFromServer } from 'firebase/firestore';
 import firebaseConfig from '../firebase-applet-config.json';
 
 let app: FirebaseApp | null = null;
@@ -23,9 +23,8 @@ export function getAuthService(): Auth {
 
 export function getDatabaseService(): Firestore {
   if (!dbInstance) {
-    dbInstance = initializeFirestore(getFirebaseApp(), {
-      experimentalForceLongPolling: true,
-    }, (firebaseConfig as any).firestoreDatabaseId);
+    const dbId = (firebaseConfig as any).firestoreDatabaseId;
+    dbInstance = dbId ? getFirestore(getFirebaseApp(), dbId) : getFirestore(getFirebaseApp());
   }
   return dbInstance;
 }
@@ -89,8 +88,8 @@ export async function testConnection() {
     await getDocFromServer(doc(db, 'test', 'connection'));
     console.log("Firebase connection successful");
   } catch (error) {
-    if(error instanceof Error && error.message.includes('the client is offline')) {
-      console.error("Please check your Firebase configuration. The client is offline.");
+    if (error instanceof Error && (error.message.includes('the client is offline') || error.message.includes('Could not reach Cloud Firestore backend'))) {
+      console.warn("Firebase notice: Connection is operating in offline mode.");
     }
   }
 }
