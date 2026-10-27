@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 0. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // common helpers
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // 0.1 Test Connection
+    match /test/connection {
+      allow read: if isSignedIn();
+    }
+
+    // 1. Unified Company Settings
+    match /settings/company {
+      allow read, write: if isSignedIn();
+    }
+
+    // 2. Shared Collections
+    match /parties/{partyId} {
+      allow read, write: if isSignedIn();
+    }
+
+    match /inventory/{itemId} {
+      allow read, write: if isSignedIn();
+    }
+
+    match /transactions/{txnId} {
+      allow read, write: if isSignedIn();
+    }
+  }
+}

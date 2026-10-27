@@ -1,0 +1,90 @@
+src/Sidebar.tsx:                {!isCollapsed && <span>Navigation</span>}
+src/Sidebar.tsx:                    {saleGroupOpen && (
+src/EstimatesModule.tsx:                                                        {openDropdownId === est.id && (
+src/EstimatesModule.tsx:                                                                 {onPaymentIn && isOpen && (
+src/EstimatesModule.tsx:                                                                 {isOpen && (
+src/HomeModule.tsx:                                            {openMenuId === inv.id && (
+src/HomeModule.tsx:                                                        {!isFullyPaid && (
+src/HomeModule.tsx:                            {sales.length === 0 && (
+src/App.tsx:    if (finalPartyName && !finalPartyId) {
+src/App.tsx:    if (saleId && saleId !== '') {
+src/App.tsx:            .filter(t => String(t.partyId) === String(finalPartyId) && t.status !== 'Closed' && t.balance > 0)
+src/App.tsx:             const isNew = !partyDataInput?.id && !parties.find(p => String(p.id) === String(finalPartyId));
+src/App.tsx:    if (!inv.isSale && inv.status === 'Closed') {
+src/App.tsx:              if (isSale && !editingInvoice) {
+src/App.tsx:              } else if (isSale && editingInvoice && editingInvoice.totalAmount !== inv.totalAmount) {
+src/App.tsx:            if (isSale && convertingEstimateId) {
+src/App.tsx:            if (isSale && convertingEstimateId) {
+src/App.tsx:          {currentView === 'HOME' && (
+src/App.tsx:          {currentView === 'REPORTS' && <ReportsModule sales={sales} parties={parties} items={items} onNavigate={setCurrentView} onExportExcel={exportToExcel} />}
+src/App.tsx:          {currentView === 'SALE_LIST' && (
+src/App.tsx:          {currentView === 'PAYMENT_IN_LIST' && (
+src/App.tsx:          {currentView === 'PAYMENT_IN_FORM' && (
+src/App.tsx:          {currentView === 'PARTIES_LIST' && (
+src/App.tsx:          {currentView === 'ITEMS_LIST' && <ItemsModule items={items} onAddItem={() => { setEditingItem({}); setShowItemModal(true); }} onEditItem={handleEditItem} onDeleteItem={handleDeleteItem} />}
+src/App.tsx:          {currentView === 'ESTIMATE_LIST' && (
+src/App.tsx:          {currentView === 'SALE_FORM' && <InvoiceForm isSale={true} allTransactions={[...sales, ...estimates]} onSave={(sale) => handleSaveInvoice(sale, true, false)} onCancel={() => { setConvertingEstimateId(null); setEditingInvoice(null); setCurrentView('SALE_LIST'); }} initialData={editingInvoice || (convertingEstimateId ? estimates.find(e => e.id === convertingEstimateId) : undefined)} parties={parties} inventoryItems={items} />}
+src/App.tsx:          {currentView === 'ESTIMATE_FORM' && <InvoiceForm isSale={false} allTransactions={[...sales, ...estimates]} onSave={(est) => handleSaveInvoice(est, false, false)} onCancel={() => { setEditingInvoice(null); setCurrentView('ESTIMATE_LIST'); }} initialData={editingInvoice || undefined} parties={parties} inventoryItems={items} />}
+src/App.tsx:          {currentView === 'INVOICE_VIEW' && currentInvoice && (
+src/App.tsx:          {currentView === 'PROFILE_EDIT' && (
+src/App.tsx:      {showPartyModal && editingParty && (
+src/App.tsx:      {showItemModal && editingItem && (
+src/App.tsx:      {deleteAction && (
+src/PaymentInModal.tsx:    initialData.totalAmount !== undefined && initialData.receivedAmount !== undefined
+src/PaymentInModal.tsx:          {errorStatus && (
+src/PaymentInModal.tsx:            ) : customerName && (
+src/PaymentInModal.tsx:          {initialData?.refNo && (
+src/InvoiceView.tsx:        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+src/InvoiceView.tsx:    if (showSignatureModal && canvasRef.current && !sigPad.current) {
+src/InvoiceView.tsx:    if (!showSignatureModal && sigPad.current) {
+src/InvoiceView.tsx:    if (sigPad.current && !sigPad.current.isEmpty()) {
+src/InvoiceView.tsx:                     {companyData.landline && <div>Landline: <b style={{ fontWeight: 'bold' }}>{companyData.landline}</b></div>}
+src/InvoiceView.tsx:                    {estimate.customerPhone && <div style={{ fontWeight: 'normal', fontSize: '14px' }}>Phone: <span style={{ fontWeight: 'bold' }}>{estimate.customerPhone}</span></div>}
+src/InvoiceView.tsx:                    {estimate.billingAddress && <div style={{ fontWeight: 'normal', fontSize: '13px', whiteSpace: 'pre-wrap', color: '#374151', marginTop: '4px' }}>{estimate.billingAddress}</div>}
+src/InvoiceView.tsx:                    {estimate.customerRefNo && <div style={{ display: 'flex' }}><span style={{ width: '130px' }}>Customer Ref No</span>: <b style={{ color: '#000' }}>{estimate.customerRefNo}</b></div>}
+src/InvoiceView.tsx:                      {(estimate.isSale || estimate.status === 'Closed') && (
+src/InvoiceView.tsx:      {showSignatureModal && (
+src/ReportsModule.tsx:                                {sales.length === 0 && (
+src/PartyFormModal.tsx:                        {activeTab === 'Address' && (
+src/PartyFormModal.tsx:                        {activeTab === 'Credit' && (
+src/PartyFormModal.tsx:                        {activeTab === 'Additional' && (
+src/PartyFormModal.tsx:                        {party.id && onDelete && (
+src/DashboardModule.tsx:        if (!sale.isSale && sale.status === 'Closed') {
+src/DashboardModule.tsx:            const hasCorrespondingSale = sales.some(s => s.isSale && s.convertedFromId === sale.id);
+src/DashboardModule.tsx:                                            {!sale.isSale && sale.status !== 'Closed' && (
+src/DashboardModule.tsx:                                                {openMenuId === sale.id && (
+src/DashboardModule.tsx:                                                            {!sale.isSale && (
+src/DashboardModule.tsx:                                                            {sale.isSale && (sale.totalAmount > (sale.receivedAmount || 0)) && (
+src/DashboardModule.tsx:                            {filteredSales.length === 0 && (
+src/SettingsModule.tsx:                            {onDeleteAllParties && (
+src/SettingsModule.tsx:                            {onDeleteAllTransactions && (
+src/SettingsModule.tsx:                            {onDeleteAllItems && (
+src/InvoiceForm.tsx:    if (selectedParty && !initialData) {
+src/InvoiceForm.tsx:    if (initialData && initialData.isSale === isSale) return;
+src/InvoiceForm.tsx:  const [refNo, setRefNo] = useState<number | null>((initialData && initialData.isSale === isSale) ? initialData.refNo : null);
+src/InvoiceForm.tsx:            ) : customerName && (
+src/InvoiceForm.tsx:          {!isSale && (
+src/InvoiceForm.tsx:            {(isSale || status === 'Closed') && (
+src/ItemFormModal.tsx:            {onDelete && item.id && (
+src/firebase.ts:    if(error instanceof Error && error.message.includes('the client is offline')) {
+src/ItemsModule.tsx:        if (selectedItem && !items.find(i => i.id === selectedItem.id)) {
+src/ItemsModule.tsx:                            {openMenuId === 'HEADER_MENU' && (
+src/ItemsModule.tsx:                                        {onDeleteItem && (
+src/ItemsModule.tsx:                                {selectedItem.stock < selectedItem.minStock && <span style={{ color: '#ef4444', fontWeight: 600 }}>Low Stock!</span>}
+src/ItemsModule.tsx:                                        {item.stock < item.minStock && <span style={{ fontSize: '11px', fontWeight: 'normal', color: '#ef4444', marginLeft: '8px' }}>(Low)</span>}
+src/ItemsModule.tsx:                                                {openMenuId === item.id && (
+src/ItemsModule.tsx:                            {items.length === 0 && (
+src/PaymentInModule.tsx:                                            {openMenuId === sale.id && (
+src/PaymentInModule.tsx:                            {filteredSales.length === 0 && (
+src/PartiesModule.tsx:        if (selectedParty && !parties.find(p => p.id === selectedParty.id)) {
+src/PartiesModule.tsx:        if (txn.isSale && onEditSale) {
+src/PartiesModule.tsx:        } else if (!txn.isSale && onEditEstimate) {
+src/PartiesModule.tsx:                        {onPaymentIn && (
+src/PartiesModule.tsx:                            {menuOpenId === 'HEADER_MENU' && (
+src/PartiesModule.tsx:                                        {onDeleteParty && (
+src/PartiesModule.tsx:                                                    {menuOpenId === txn.id && (
+src/PartiesModule.tsx:                                {partyTransactions.length === 0 && (
+src/PartiesModule.tsx:                                                {menuOpenId === party.id && (
+src/PartiesModule.tsx:                                                            {onPaymentIn && (
+src/PartiesModule.tsx:                            {parties.length === 0 && (
+src/TopHeader.tsx:                {onSearch && (

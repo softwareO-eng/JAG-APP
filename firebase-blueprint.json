@@ -1,0 +1,96 @@
+{
+  "entities": {
+    "CompanyData": {
+      "title": "Company Data",
+      "description": "Business settings and profile Information",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "landline": { "type": "string" },
+        "address": { "type": "string" },
+        "logo": { "type": "string" },
+        "signature": { "type": "string" },
+        "terms": { "type": "string" }
+      },
+      "required": ["userId", "name"]
+    },
+    "Party": {
+      "title": "Party",
+      "description": "Customer or Vendor Information",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "balance": { "type": "number" },
+        "type": { "type": "string", "enum": ["receive", "pay"] },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "billingAddress": { "type": "string" },
+        "shippingAddress": { "type": "string" },
+        "gstin": { "type": "string" }
+      },
+      "required": ["userId", "name", "balance"]
+    },
+    "InventoryItem": {
+      "title": "Inventory Item",
+      "description": "Items in the inventory",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "unit": { "type": "string" },
+        "price": { "type": "number" },
+        "stock": { "type": "number" },
+        "minStock": { "type": "number" }
+      },
+      "required": ["userId", "name"]
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "description": "Sales or Estimates",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "refNo": { "type": "number" },
+        "date": { "type": "string" },
+        "customerName": { "type": "string" },
+        "customerPhone": { "type": "string" },
+        "billingAddress": { "type": "string" },
+        "partyId": { "type": "string" },
+        "items": { "type": "array" },
+        "status": { "type": "string" },
+        "discountValue": { "type": "number" },
+        "discountType": { "type": "string" },
+        "taxType": { "type": "string" },
+        "description": { "type": "string" },
+        "totalAmount": { "type": "number" },
+        "balance": { "type": "number" },
+        "isSale": { "type": "boolean" },
+        "receivedAmount": { "type": "number" },
+        "paymentType": { "type": "string" }
+      },
+      "required": ["userId", "refNo", "date", "customerName", "totalAmount"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/settings/profile": {
+      "schema": "CompanyData",
+      "description": "User profile and business settings"
+    },
+    "/parties": {
+      "schema": "Party",
+      "description": "Collection of parties"
+    },
+    "/inventory": {
+      "schema": "InventoryItem",
+      "description": "Collection of inventory items"
+    },
+    "/transactions": {
+      "schema": "Transaction",
+      "description": "Collection of sales and estimates"
+    }
+  }
+}
